@@ -11,11 +11,13 @@ public class Main {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         LongAdder longAdder = new LongAdder();
+        final int ARRAY_LENGTH=100;
+        final int RANDOM_TOP=10000;
 
         //Генерация 3 массивов целых положительных чисел.В количестве 7ми штук.
-        List<Long> list1 = Stream.generate(() -> (long) (Math.random() * 10000)).limit(7).collect(Collectors.toList());
-        List<Long> list2 = Stream.generate(() -> (long) (Math.random() * 10000)).limit(7).collect(Collectors.toList());
-        List<Long> list3 = Stream.generate(() -> (long) (Math.random() * 10000)).limit(7).collect(Collectors.toList());
+        List<Long> list1 = Stream.generate(() -> (long) (Math.random() * RANDOM_TOP)).limit(ARRAY_LENGTH).collect(Collectors.toList());
+        List<Long> list2 = Stream.generate(() -> (long) (Math.random() * RANDOM_TOP)).limit(ARRAY_LENGTH).collect(Collectors.toList());
+        List<Long> list3 = Stream.generate(() -> (long) (Math.random() * RANDOM_TOP)).limit(ARRAY_LENGTH).collect(Collectors.toList());
 
         //Создание трех потоков, которые суммируют выручку (каждый по своему массиву) в общий отчет
         executorService.submit(() -> list1.forEach(x -> longAdder.add(x.longValue())));
