@@ -1,14 +1,14 @@
 package Volatile;
 
 public class Main {
-    static volatile boolean volatileVal = false;
     static final int SLEEP_TIME = 10000;
     static boolean temp = true;
 
     public static void main(String[] args) throws Exception {
-        Thread toyThread = new ToyThread();
+        VolatileClass v=new VolatileClass();
+        Thread toyThread = new ToyThread(v);
         toyThread.setName("Игуршка");
-        Thread userThread = new UserThread();
+        Thread userThread = new UserThread(v);
         userThread.setName("Пользователь");
 
         System.out.println("Начало игры");

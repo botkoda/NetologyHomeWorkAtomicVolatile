@@ -1,15 +1,20 @@
 package Volatile;
 
-import static Volatile.Main.volatileVal;
-
 public class UserThread extends Thread {
+    VolatileClass v;
+
+    UserThread(VolatileClass v) {
+        this.v = v;
+    }
+
     static final int SLEEP_TIME = 3000;
+
     @Override
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
-            if (!volatileVal) {
+            if (!v.volatileVal) {
                 System.out.println(Thread.currentThread().getName() + " Включает тумблер");
-                volatileVal = true;
+                v.volatileVal = true;
             }
             try {
                 Thread.sleep(SLEEP_TIME);

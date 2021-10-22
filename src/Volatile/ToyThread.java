@@ -1,17 +1,22 @@
 package Volatile;
 
-import static Volatile.Main.volatileVal;
-
 public class ToyThread extends Thread {
+    VolatileClass  v;
+
+    ToyThread(VolatileClass v){
+        this.v=v;
+    }
+
     @Override
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
-            if (volatileVal) {
+            if (v.volatileVal) {
                 System.out.println(Thread.currentThread().getName() + " Выключает тумблер");
-                volatileVal = false;
+                v.volatileVal = false;
             }
-            InterruptedException sa = new InterruptedException();
         }
         System.out.println("Игрушка схлопнулась");
     }
+
+
 }
