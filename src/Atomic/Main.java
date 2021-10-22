@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public class Main {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-        LongAdder longAdder = new LongAdder();
+        final LongAdder longAdder = new LongAdder();
         final int ARRAY_LENGTH=100;
         final int RANDOM_TOP=10000;
 
